@@ -1,0 +1,36 @@
+<div class="main-page">
+  <a href="/learn">
+    <button class="learn-button">가르치러 가기</button>
+  </a>
+  <section class="chat">
+    <% @chats.each do |c| %>
+      <% if c.chat_type == "bot" %>
+        <div class="left">
+          <div class="profile">
+            <div class="icon"></div>
+            <div class="name">Bot</div>
+          </div>
+          <div class="balloon">
+            <div class="tail"></div>
+            <div class="text"><%= c.chat_content %></div>
+          </div>
+        </div>
+      <% else %>
+        <div class="right">
+          <div class="profile">
+            <div class="icon"></div>
+            <div class="name">User</div>
+          </div>
+          <div class="balloon">
+            <div class="tail"></div>
+            <div class="text"><%= c.chat_content %></div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </section>
+  <%= form_tag '/talker', method: 'post', class: "chat-form" do %>
+    <input type="text" placeholder="입력..." name="ask">
+    <input type="submit" value="전송">
+  <% end %>
+</div>
